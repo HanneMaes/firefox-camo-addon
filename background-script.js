@@ -1,4 +1,8 @@
 // test extention: about:debugging
+// building the addon: https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/
+// theme colors: // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/theme
+
+//****************************************************************************************************************************************************
 
 // watch for changes & update the theme
 browser.tabs.onActivated.addListener(event => update(event.tabId)) // when new tab is activated
@@ -40,7 +44,6 @@ async function update(tabId) {
         colorBackBg += ""
 
         // create a custom theme
-        // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/theme
         const customTheme = {
           "colors": {
 
