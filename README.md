@@ -8,7 +8,7 @@ A dynamic Firefox theme that changes color based on the websites ```meta[name="t
 ## Todo
 - Extract the websites background color and change the white of the theme to the websites background.
 - Port to Firefox Mobile
-- Finish the Bright and the Subtle themes
+- Finish the Bright and the Subtle theme variations
 
 ## Testing
 1. about:debugging
