@@ -6,8 +6,8 @@
 Let your browser change color based on the website.
 https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/
 
-A dynamic Firefox theme that changes color based on the websites meta[name="theme-color"] tag.
-When there is no meta[name="theme-color"] tag found, it switches back to your previous theme.
+A dynamic Firefox theme that changes color based on the websites ```meta[name="theme-color"]``` tag.
+When there is no ```meta[name="theme-color"]``` tag found, it switches back to your previous theme.
 
 ![todoist screenshot](design/screenshots/bright-theme/screenshot-todoist.png)
 ![Deviantarts screenshot](design/screenshots/bright-theme/screenshot-deviantart.png)
