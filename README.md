@@ -5,10 +5,12 @@
 # Camo
 A dynamic Firefox theme that changes color based on the websites ```meta[name="theme-color"]``` tag.
 
+---
+
 ## Todo
-- Extract the websites background color and change the white of the theme to the websites background.
-- Port to Firefox Mobile
+- Port to Firefox Mobile: https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/
 - Finish the Bright and the Subtle theme variations
+- Extract the websites background color when there is no ```meta[name="theme-color"]``` found
 
 ## Testing
 1. about:debugging
