@@ -4,6 +4,7 @@
 
 # Camo
 A dynamic Firefox theme that changes color based on the websites ```meta[name="theme-color"]``` tag.
+https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/
 
 ---
 
