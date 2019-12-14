@@ -6,13 +6,16 @@ browser.tabs.onUpdated.addListener(tabId => update(tabId))         // when tab c
 async function update(tabId) {
 
   // get the meta theme color
-  try {
-    browser.tabs.executeScript(null, { 
-      code: `document.querySelector('meta[name="theme-color"]').content`}, 
+  browser.tabs.executeScript(null, { 
+    code: `document.querySelector('meta[name="theme-color"]').content`}, 
 
-      // execute the function when the injected executeScript is finished
-      function(result) {  
-        console.log('theme color: ', result); 
+    // execute the function when the injected executeScript is finished
+    function(result) {  
+      console.log('theme color: ', result); 
+
+      // reset the theme is there was no meta[name="theme-color"] found
+      if(!result) browser.theme.reset()
+      else {
 
         // extract the color
         var colorTheme = result[0] //"rgb(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ")"
@@ -24,16 +27,12 @@ async function update(tabId) {
 
         // apply the theme
         browser.theme.update(customTheme)
+      }
 
-      } // function(result)
-    ) // execute script
-
+    } // function(result)
+  ) // execute script
+    
   // there was no theme color found
-  } catch(error) {
-
-    // reset the theme
-    browser.theme.reset()
-  }
 
 } // async function
 
