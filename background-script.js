@@ -1,3 +1,8 @@
+var userDefinedThemeColors = {
+  "smartschool": "#c60450",
+  "digitap": "#B20005",
+}
+
 var theme = 'bright' // 'bright' or 'subtle'
 
 // watch for changes & update the theme

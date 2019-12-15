@@ -1,4 +1,4 @@
-![Camo logo](design/camo-logo-1000x245.png)
+![Camo logo](design/camo-logo-1000x245.jpg)
 
 ![Camo screenshots](design/screenshots-1000x657.jpg)
 
