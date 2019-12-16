@@ -2,10 +2,6 @@
 
 ![Camo screenshots](design/screenshots-github-1000x657.jpg)
 
-![todoist screenshot](design/screenshots/screenshot-todoist-github-1000x599.jpg)
-![Deviantarts screenshot](design/screenshots/screenshot-deviantart-github-1000x599.jpg)
-![Github screenshot](design/screenshots/screenshot-github-github-1000x599.jpg)
-
 # Camo dynamic theme
 Get the add-on: https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/
 
@@ -15,13 +11,16 @@ A dynamic Firefox theme that changes color based on the website.
 The color is based on the websites ```meta[name="theme-color"]``` tag. 
 Because not every website has a ```meta[name="theme-color"]``` tag, I defined the color myself for a lot of website. 
 
-If you like the add-on, show some love by leaving a [review](https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/) or start he project on [GitHub](https://github.com/HanneMaes/firefox-camo-addon).
+If you like the add-on, show some love by leaving a [review](https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/) or star the project on [GitHub](https://github.com/HanneMaes/firefox-camo-addon).
 
 **These are some popular websites that are supported:**
 - [GitHub](https://github.com/)
 - [Twitter](https://twitter.com/)
-- [Facebook](https://www.facebook.com/)
 - [Medium](https://medium.com/)
+
+![todoist screenshot](design/screenshots/screenshot-todoist-github-1000x599.jpg)
+![Deviantarts screenshot](design/screenshots/screenshot-deviantart-github-1000x599.jpg)
+![Github screenshot](design/screenshots/screenshot-github-github-1000x599.jpg)
 
 # Todo
 - Add an onboard, upboard & offboard page: https://extensionworkshop.com/documentation/develop/onboard-upboard-offboard-users/
