@@ -3,9 +3,9 @@
 ![Camo screenshots](design/screenshots-github-1000x657.jpg)
 
 # Camo dynamic theme
+A dynamic Firefox theme that changes color based on the website.
 Get the add-on: https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/
 
-A dynamic Firefox theme that changes color based on the website.
 **If a website you use a lot doesn't have a theme color, let me know at [GitHub](https://github.com/HanneMaes/firefox-camo-addon) or maes.hanne@gmail.com and I'll update the add-on for you.**
 
 The color is based on the websites ```meta[name="theme-color"]``` tag. 
