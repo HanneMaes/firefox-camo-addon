@@ -1,30 +1,41 @@
-![Camo logo](design/camo-logo-1000x245.jpg)
+![Camo logo](design/logo-github-1000x245.jpg)
 
-![Camo screenshots](design/screenshots-1000x657.jpg)
+![Camo screenshots](design/screenshots-github-1000x657.jpg)
 
-# Camo
-https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/
+![todoist screenshot](design/screenshots/screenshot-todoist-github-1000x599.jpg)
+![Deviantarts screenshot](design/screenshots/screenshot-deviantart-github-1000x599.jpg)
+![Github screenshot](design/screenshots/screenshot-github-github-1000x599.jpg)
 
-A dynamic Firefox theme that changes color based on the websites ```meta[name="theme-color"]``` tag.
-When there is no ```meta[name="theme-color"]``` tag found, it switches back to your previous theme.
+# Camo dynamic theme
+Get the add-on: https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/
 
-![todoist screenshot](design/screenshots/bright-theme/screenshot-todoist-1000x599.jpg)
-![Deviantarts screenshot](design/screenshots/bright-theme/screenshot-deviantart-1000x599.jpg)
-![Github screenshot](design/screenshots/bright-theme/screenshot-github-1000x599.jpg)
+A dynamic Firefox theme that changes color based on the website.
+**If a website you use a lot doesn't have a theme color, let me know at [GitHub](https://github.com/HanneMaes/firefox-camo-addon) or maes.hanne@gmail.com and I'll update the add-on for you.**
 
-## Todo
+The color is based on the websites ```meta[name="theme-color"]``` tag. 
+Because not every website has a ```meta[name="theme-color"]``` tag, I defined the color myself for a lot of website. 
+
+If you like the add-on, show some love by leaving a [review](https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/) or start he project on [GitHub](https://github.com/HanneMaes/firefox-camo-addon).
+
+**These are some popular websites that are supported:**
+- [GitHub](https://github.com/)
+- [Twitter](https://twitter.com/)
+- [Facebook](https://www.facebook.com/)
+- [Medium](https://medium.com/)
+
+# Todo
+- Add an onboard, upboard & offboard page: https://extensionworkshop.com/documentation/develop/onboard-upboard-offboard-users/
+- Only change the colors of the current window, when there are multiple Firefox windows open
 - Port to Firefox Mobile: https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/
-- Finish the Bright and the Subtle theme variations
-- Extract the websites background color when there is no ```meta[name="theme-color"]``` found
 
-## Testing
+# Info
+- Theme colors: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/theme
+
+# Testing
 1. about:debugging
 2. This Firefox
 3. Load temporary Add-on
 3. Select: background-script.js
 
-## Packaging
+# Packaging
 - ```web-ext build```: https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/
-
-## Info
-- Theme colors: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/theme

@@ -1,14 +1,30 @@
-var userDefinedThemeColors = {
-  "smartschool": "#c60450",
-  "digitap": "#B20005",
-}
+// start by resetting the theme, so when you launch the browser you dont see the theme color of the website you visited last session
+browser.theme.reset()
 
-var theme = 'bright' // 'bright' or 'subtle'
+// website theme colors I defined myself for when there is no meta[name="theme-color"] tag found
+var userDefinedThemeColors = [
+  [".smartschool.","#c60450"],
+  [".ap.","#B20005"],
+  ["stackoverflow.","#F48024"],
+  [".messenger.","#0074FF"],
+  [".whatsapp.","#1EBEA5"],
+  [".facebook.","#4B66A0"],
+  ["mail.google","#DC3F34"],
+  ["calendar.google","#3765D0"],
+  [".netflix.","#E50914"],
+  [".spotify.","#1ED760"],
+  [".notion.","#ffffff"],
+  [".figma.","#000"],
+  [".gravit.","#D72E63"],
+  [".tinkercad.","#2E6DA4"],
+  ["giphy.","#6A61FF"],
+  [".behance.","#0057FF"],
+]
 
 // watch for changes & update the theme
 browser.tabs.onActivated.addListener(event => update(event.tabId)) // when new tab is activated
 browser.tabs.onUpdated.addListener(tabId => update(tabId))         // when tab changes state
-async function update(tabId) {
+async function update(tabId, tab) {
 
   // get the meta theme color
   browser.tabs.executeScript(null, { 
@@ -16,30 +32,64 @@ async function update(tabId) {
 
     // execute the function when the injected executeScript is finished
     function(result) {  
-      console.log('theme color: ', result); 
-
-      // reset the theme is there was no meta[name="theme-color"] found
-      if(!result) browser.theme.reset()
-      else {
+      
+      // if there is a theme color
+      if(result) {
+        console.log('theme color found: ', result)
 
         // extract the color
         var colorTheme = result[0] //"rgb(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ")"
+        themeThisBrowser(colorTheme)
+        
+      } else {
+        
+        console.log('no theme color found')
 
-        // make theme
-        var customTheme
-        if(theme == 'bright') customTheme = brightTheme(customTheme, colorTheme)
-        else                  customTheme = subtleTheme(customTheme, colorTheme)
+        // if there is no theme color
+        // look trough my curstom list of defined colors
+        browser.tabs.query({currentWindow: true, active: true}).then((tabs) => {
 
-        // apply the theme
-        browser.theme.update(customTheme)
-      }
+          // get tab url
+          let tab = tabs[0] // Safe to assume there will only be one result
+          var url = tab.url; console.log('url:', url)
 
+          // look if I dedined a color for this url
+          var colorTheme = false
+          for(var i in userDefinedThemeColors) {
+            if(url.includes(userDefinedThemeColors[i][0])) {
+
+              // colorTheme found
+              colorTheme = userDefinedThemeColors[i][1]
+              themeThisBrowser(colorTheme)
+              break // stop looping
+            }
+
+            // if not custom defined color was found, use the default theme
+            browser.theme.reset()
+          }
+
+        }, console.error) 
+      
+      } // else
     } // function(result)
   ) // execute script
     
   // there was no theme color found
 
 } // async function
+
+//****************************************************************************************************************************************************
+
+// give the browser a color
+function themeThisBrowser(colorTheme) {
+
+  // make theme
+  var customTheme
+  customTheme = brightTheme(customTheme, colorTheme)
+
+  // apply the theme
+  browser.theme.update(customTheme)
+}
 
 //****************************************************************************************************************************************************
 
@@ -51,7 +101,7 @@ function brightTheme(theme, colorTheme) {
   var colorInactiveTabsText = "rgb(150, 150, 150)"
   var colorInactiveTabsSeparators = 'rgb(150, 150, 150)' // the small line between de inactive bookmarks 
 
-  var darkOrLightTheme = lightOrDark(colorTheme); console.log("darkOrLightTheme:", darkOrLightTheme);
+  var darkOrLightTheme = lightOrDark(colorTheme); console.log("darkOrLightTheme:", darkOrLightTheme)
   if(darkOrLightTheme == 'light') {
     // light theme color
     colorText = changeBrightness(colorTheme, -40)
@@ -97,69 +147,6 @@ function brightTheme(theme, colorTheme) {
       "popup_text": colorText,
       "popup_highlight": colorHover,
       "popup_highlight_text": colorText,
-    }
-  }
-
-  return theme
-}
-
-//****************************************************************************************************************************************************
-
-function subtleTheme(theme, colorTheme) {
-
-  // calculate other color
-  var colorThemeText, colorThemeSubtle
-
-  var colorText = changeBrightness(colorTheme, -50)
-  var colorBackBg = changeBrightness(colorTheme, 50)
-
-  var darkOrLightTheme = lightOrDark(colorTheme); console.log("darkOrLightTheme:", darkOrLightTheme);
-  if(darkOrLightTheme == 'light') {
-    // light theme color
-    colorThemeText = changeBrightness(colorTheme, -40)
-    colorThemeSubtle = changeBrightness(colorTheme, 50)
-  } else {     
-    // dark theme color                       
-    colorThemeText = changeBrightness(colorTheme, 40)
-    colorThemeSubtle  = changeBrightness(colorTheme, -50)
-  }
-
-  colorThemeText += ""
-  colorThemeSubtle += ""
-  colorText += ""
-  colorBackBg += ""
-
-  // create a custom theme
-  theme = {
-    "colors": {
-
-      // toolbar with the active tab, toolbar, url bar, ...
-      "bookmark_text": colorThemeText, // color of text and icons in the bookmark and find bar
-      "tab_text": colorThemeText,      // active tab text
-      "icons_attention": colorTheme,
-      "tab_loading": colorTheme,
-      "toolbar": "white",
-      "toolbar_bottom_separator": "rgb(240, 240, 240)", // the bottom line of the toolbar
-      "button_background_hover": "rgb(240, 240, 240)",  // bg when you hover over the icons
-      "toolbar_top_separator": colorThemeText,          // the line between de toolbar and the inactive tabs
-      "toolbar_vertical_separator": "white",            // the vertical lines in the toolbar
-
-      // url bar
-      "toolbar_field_text": colorThemeText,
-      "toolbar_field_border": colorTheme,
-      "toolbar_field_border_focus": colorTheme,
-      "toolbar_field_highlight": colorTheme,
-      "toolbar_field_highlight_text": "white",
-      "toolbar_field_separator": "white",
-
-      // inactive tabs
-      "frame": colorTheme,                           // overall color
-      "tab_background_text": colorThemeText,         
-      "tab_background_separator": colorThemeSubtle,  // the small line between de inactive bookmarks 
-
-      // popups
-      "popup_highlight": colorTheme,
-      "popup_highlight_text": colorThemeText,
     }
   }
 
