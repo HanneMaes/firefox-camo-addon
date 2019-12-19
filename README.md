@@ -23,8 +23,10 @@ If you like the add-on, show some love by leaving a [review](https://addons.mozi
 ![Github screenshot](design/screenshots/screenshot-github-github-1000x599.jpg)
 
 # Todo
-- Add an onboard, upboard & offboard page: https://extensionworkshop.com/documentation/develop/onboard-upboard-offboard-users/
+- Reset the theme when the browser closes
 - Only change the colors of the current window, when there are multiple Firefox windows open
+- The color updates a lot (see facebook)
+- Add an onboard, upboard & offboard page: https://extensionworkshop.com/documentation/develop/onboard-upboard-offboard-users/
 - Port to Firefox Mobile: https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/
 
 # Info

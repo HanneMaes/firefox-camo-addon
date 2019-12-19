@@ -143,10 +143,10 @@ function brightTheme(theme, colorTheme) {
       "tab_background_separator": colorInactiveTabsSeparators, 
 
       // popups
-      "popup": colorTheme,
+      "popup": colorHover,
       "popup_text": colorText,
-      "popup_highlight": colorHover,
-      "popup_highlight_text": colorText,
+      "popup_highlight": colorTheme,
+      "popup_highlight_text": colorAttention,
     }
   }
 
