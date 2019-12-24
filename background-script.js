@@ -1,6 +1,3 @@
-// start by resetting the theme, so when you launch the browser you dont see the theme color of the website you visited last session
-browser.theme.reset()
-
 // website theme colors I defined myself for when there is no meta[name="theme-color"] tag found
 var userDefinedThemeColors = [
   [".smartschool.","#c60450"],
@@ -11,6 +8,7 @@ var userDefinedThemeColors = [
   [".facebook.","#4B66A0"],
   ["mail.google","#DC3F34"],
   ["calendar.google","#3765D0"],
+  ["google.com/spreadsheets","#2A8947"],
   [".netflix.","#E50914"],
   [".spotify.","#1ED760"],
   [".notion.","#ffffff"],
@@ -19,58 +17,90 @@ var userDefinedThemeColors = [
   [".tinkercad.","#2E6DA4"],
   ["giphy.","#6A61FF"],
   [".behance.","#0057FF"],
+  [".die2nite.","#7E4D2A"],
 ]
 
-// watch for changes & update the theme
-browser.tabs.onActivated.addListener(event => update(event.tabId)) // when new tab is activated
-browser.tabs.onUpdated.addListener(tabId => update(tabId))         // when tab changes state
-async function update(tabId, tab) {
+var prevUrl, prevColorTheme = false // save these settings so we can see if they changes
 
+// watch when a window is closed to reset the theme
+// this is to prevent when opening the browser it has the colors on the last opened website
+browser.windows.onRemoved.addListener(browser.theme.reset) // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/onRemoved
+
+// watch for changes & update the theme
+browser.windows.onFocusChanged.addListener(event => update(event.tabId))                // fires when the active window changes
+browser.tabs.onActivated.addListener(event => update(event.tabId))                      // fires when the active tab in a window changes
+browser.tabs.onUpdated.addListener(tabId => update(tabId)/*, {properties: ["title"]}*/) // fires when a tab is updates
+async function update(tabId) {
+
+  console.log('')
+
+  // A tab is updaten when the user navigates to a new URL in a tab, this will typically generate several onUpdated events as various properties of the tabs. Tab object are updated. 
+  // This includes the url, but also potentially the title and favIconUrl properties. The status property will cycle through "loading" and "complete".
+  // This event will also be fired for changes to a tab's properties that don't involve navigation, like pinning and unpinning (which updates the pinned property) and muting or unmuting (which updates the audible and mutedInfo properties).
+  
+  // The second parameter is the filter. This function is only fired when the filer is true
+  //https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onUpdated
+  
   // get the meta theme color
   browser.tabs.executeScript(null, { 
     code: `document.querySelector('meta[name="theme-color"]').content`}, 
 
     // execute the function when the injected executeScript is finished
     function(result) {  
-      
-      // if there is a theme color
-      if(result) {
-        console.log('theme color found: ', result)
 
-        // extract the color
-        var colorTheme = result[0] //"rgb(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ")"
-        themeThisBrowser(colorTheme)
-        
-      } else {
-        
-        console.log('no theme color found')
+      // get he current window id
+      var getting = browser.windows.getCurrent({populate: true});
+      getting.then(windowFound, windowNotFound)
+      function windowFound(windowInfo) {
 
-        // if there is no theme color
-        // look trough my curstom list of defined colors
-        browser.tabs.query({currentWindow: true, active: true}).then((tabs) => {
+        console.log("windowInfo:", windowInfo)
+        windowId = windowInfo.id
+
+        // if there is a theme color
+        if(result) {
+          console.log('theme color found: ', result)
+
+          // extract the color
+          var colorTheme = result[0] //"rgb(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ")"
+          themeThisBrowser(windowId, colorTheme)
+          
+        } else {
+          
+          console.log('no theme color found')
+
+          // if there is no theme color
+          // look trough my curstom list of defined colors
+          browser.tabs.query({currentWindow: true, active: true}).then((tabs) => {
 
           // get tab url
           let tab = tabs[0] // Safe to assume there will only be one result
           var url = tab.url; console.log('url:', url)
 
-          // look if I dedined a color for this url
-          var colorTheme = false
-          for(var i in userDefinedThemeColors) {
-            if(url.includes(userDefinedThemeColors[i][0])) {
+            // look if I dedined a color for this url
+            var colorTheme = false
+            for(var i in userDefinedThemeColors) {
+              if(url.includes(userDefinedThemeColors[i][0])) {
 
-              // colorTheme found
-              colorTheme = userDefinedThemeColors[i][1]
-              themeThisBrowser(colorTheme)
-              break // stop looping
+                // colorTheme found
+                colorTheme = userDefinedThemeColors[i][1]
+                themeThisBrowser(windowId, colorTheme)
+                break // stop looping
+              }
+
+              // if not custom defined color was found, use the default theme
+              browser.theme.reset()
+
             }
+          }, console.error) 
+        
+        } // else
 
-            // if not custom defined color was found, use the default theme
-            browser.theme.reset()
-          }
+      } // getting.then
 
-        }, console.error) 
-      
-      } // else
+      // show an error when there was no window found
+      function windowNotFound(error) {
+        console.log(`Window not found error: ${error}`);
+      }
     } // function(result)
   ) // execute script
     
@@ -81,14 +111,14 @@ async function update(tabId, tab) {
 //****************************************************************************************************************************************************
 
 // give the browser a color
-function themeThisBrowser(colorTheme) {
-
+async function themeThisBrowser(windowId, colorTheme) {
+console.log("windowId:", windowId);
   // make theme
   var customTheme
   customTheme = brightTheme(customTheme, colorTheme)
 
-  // apply the theme
-  browser.theme.update(customTheme)
+  // apply the theme to the current window
+  browser.theme.update(windowId, customTheme)
 }
 
 //****************************************************************************************************************************************************
@@ -97,20 +127,20 @@ function brightTheme(theme, colorTheme) {
 
   // other color
   var colorText, colorAttention, colorHover
-  var colorInactiveTabs = changeBrightness(colorTheme, -60)
+  var colorInactiveTabs = changeBrightness(colorTheme, -40)
   var colorInactiveTabsText = "rgb(150, 150, 150)"
   var colorInactiveTabsSeparators = 'rgb(150, 150, 150)' // the small line between de inactive bookmarks 
 
   var darkOrLightTheme = lightOrDark(colorTheme); console.log("darkOrLightTheme:", darkOrLightTheme)
   if(darkOrLightTheme == 'light') {
     // light theme color
-    colorText = changeBrightness(colorTheme, -40)
-    colorHover = changeBrightness(colorTheme, 20)
+    colorText = changeBrightness(colorTheme, -70)
+    colorHover = changeBrightness(colorTheme, -10)
     colorAttention = "black"
   } else {     
     // dark theme color                       
-    colorText = changeBrightness(colorTheme, 40)
-    colorHover = changeBrightness(colorTheme, -20)
+    colorText = changeBrightness(colorTheme, 70)
+    colorHover = changeBrightness(colorTheme, 10)
     colorAttention = "white"
   }
 
@@ -126,7 +156,7 @@ function brightTheme(theme, colorTheme) {
       "icons_attention": colorAttention,
       "tab_loading": colorAttention,
       "button_background_hover": colorHover,  // bg when you hover over the icons
-      "toolbar_bottom_separator": colorHover, // the bottom line of the toolbar
+      "toolbar_bottom_separator": colorTheme, //colorHover, // the bottom line of the toolbar
 
       // url bar
       "toolbar_field": colorHover,

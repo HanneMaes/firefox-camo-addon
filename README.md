@@ -13,19 +13,18 @@ Because not every website has a ```meta[name="theme-color"]``` tag, I defined th
 
 If you like the add-on, show some love by leaving a [review](https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/) or star the project on [GitHub](https://github.com/HanneMaes/firefox-camo-addon).
 
-**These are some popular websites that are supported:**
+**You can test the add-on with one of these sites:**
 - [GitHub](https://github.com/)
 - [Twitter](https://twitter.com/)
 - [Medium](https://medium.com/)
+- [Arduino](https://www.arduino.cc/)
 
 ![todoist screenshot](design/screenshots/screenshot-todoist-github-1000x599.jpg)
 ![Deviantarts screenshot](design/screenshots/screenshot-deviantart-github-1000x599.jpg)
 ![Github screenshot](design/screenshots/screenshot-github-github-1000x599.jpg)
 
 # Todo
-- Reset the theme when the browser closes
-- Only change the colors of the current window, when there are multiple Firefox windows open
-- The color updates a lot (see facebook)
+- The color updates a lot (see facebook):https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/get or https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onUpdated
 - Add an onboard, upboard & offboard page: https://extensionworkshop.com/documentation/develop/onboard-upboard-offboard-users/
 - Port to Firefox Mobile: https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/
 
