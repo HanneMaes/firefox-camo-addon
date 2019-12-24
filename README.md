@@ -14,8 +14,9 @@ Because not every website has a ```meta[name="theme-color"]``` tag, I defined th
 If you like the add-on, show some love by leaving a [review](https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/) or star the project on [GitHub](https://github.com/HanneMaes/firefox-camo-addon).
 
 **You can test the add-on with one of these sites:**
-- [GitHub](https://github.com/)
 - [Twitter](https://twitter.com/)
+- [Netflix](https://github.com/)
+- [GitHub](https://www.netflix.com/)
 - [Medium](https://medium.com/)
 - [Arduino](https://www.arduino.cc/)
 
