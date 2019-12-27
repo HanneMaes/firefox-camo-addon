@@ -14,18 +14,19 @@ Because not every website has a ```meta[name="theme-color"]``` tag, I defined th
 If you like the add-on, show some love by leaving a [review](https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/) or star the project on [GitHub](https://github.com/HanneMaes/firefox-camo-addon).
 
 **You can test the add-on with one of these sites:**
+- [Facebook](https://www.facebook.com/)
 - [Twitter](https://twitter.com/)
-- [Netflix](https://github.com/)
-- [GitHub](https://www.netflix.com/)
+- [Netflix](https://www.netflix.com/)
+- [GitHub](https://github.com/)
 - [Medium](https://medium.com/)
 - [Arduino](https://www.arduino.cc/)
 
-![todoist screenshot](design/screenshots/screenshot-todoist-github-1000x599.jpg)
-![Deviantarts screenshot](design/screenshots/screenshot-deviantart-github-1000x599.jpg)
+![Facebook screenshot](design/screenshots/screenshot-facebook-github-1000x599.jpg)
+![Netflix screenshot](design/screenshots/screenshot-netflix-github-1000x599.jpg)
+![Arduino screenshot](design/screenshots/screenshot-arduino-github-1000x599.jpg)
 ![Github screenshot](design/screenshots/screenshot-github-github-1000x599.jpg)
 
 # Todo
-- Update the screenshots: Netflex, Twitter, Github
 - Sometimes the frame flashes to white before updating to color
 - Add an onboard, upboard & offboard page: https://extensionworkshop.com/documentation/develop/onboard-upboard-offboard-users/
 - Port to Firefox Mobile: https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/

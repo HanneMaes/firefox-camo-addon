@@ -20,6 +20,10 @@ var userDefinedThemeColors = [
   [".die2nite.","#7E4D2A"],
   ["codepen.","#1E1F26"],
   [".booking.", "#003580"],
+  [".youtube.", "#FF0000"],
+  [".tumblr.", "#001935"],
+  [".pinterest.", "#FFFFFF"],
+  [".snapchat.", "#FFFC00"],
 ]
 
 // watch when a window is closed to reset the theme
