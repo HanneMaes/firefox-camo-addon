@@ -18,9 +18,9 @@ var userDefinedThemeColors = [
   ["giphy.","#6A61FF"],
   [".behance.","#0057FF"],
   [".die2nite.","#7E4D2A"],
+  ["codepen.","#1E1F26"],
+  [".booking.", "#003580"],
 ]
-
-var prevUrl, prevColorTheme = false // save these settings so we can see if they changes
 
 // watch when a window is closed to reset the theme
 // this is to prevent when opening the browser it has the colors on the last opened website
@@ -29,7 +29,7 @@ browser.windows.onRemoved.addListener(browser.theme.reset) // https://developer.
 // watch for changes & update the theme
 browser.windows.onFocusChanged.addListener(event => update(event.tabId))                // fires when the active window changes
 browser.tabs.onActivated.addListener(event => update(event.tabId))                      // fires when the active tab in a window changes
-browser.tabs.onUpdated.addListener(tabId => update(tabId)/*, {properties: ["title"]}*/) // fires when a tab is updates
+browser.tabs.onUpdated.addListener(tabId => update(tabId), {properties: ["discarded"]}) // fires when a tab is updates
 async function update(tabId) {
 
   console.log('')
@@ -74,7 +74,7 @@ async function update(tabId) {
 
           // get tab url
           let tab = tabs[0] // Safe to assume there will only be one result
-          var url = tab.url; console.log('url:', url)
+          var url = tab.url
 
             // look if I dedined a color for this url
             var colorTheme = false
@@ -84,10 +84,13 @@ async function update(tabId) {
                 // colorTheme found
                 colorTheme = userDefinedThemeColors[i][1]
                 themeThisBrowser(windowId, colorTheme)
+
+                console.log('chose theme color:', colorTheme)
                 break // stop looping
               }
 
               // if not custom defined color was found, use the default theme
+              console.log('-> default theme')
               browser.theme.reset()
 
             }
@@ -112,7 +115,10 @@ async function update(tabId) {
 
 // give the browser a color
 async function themeThisBrowser(windowId, colorTheme) {
-console.log("windowId:", windowId);
+
+  prevColorTheme = colorTheme
+  console.log('-> updating theme')
+
   // make theme
   var customTheme
   customTheme = brightTheme(customTheme, colorTheme)
@@ -127,11 +133,12 @@ function brightTheme(theme, colorTheme) {
 
   // other color
   var colorText, colorAttention, colorHover
+
   var colorInactiveTabs = changeBrightness(colorTheme, -40)
-  var colorInactiveTabsText = "rgb(150, 150, 150)"
+  var colorTextInactiveTabs = changeBrightness(colorInactiveTabs, 40)
   var colorInactiveTabsSeparators = 'rgb(150, 150, 150)' // the small line between de inactive bookmarks 
 
-  var darkOrLightTheme = lightOrDark(colorTheme); console.log("darkOrLightTheme:", darkOrLightTheme)
+  var darkOrLightTheme = lightOrDark(colorTheme)
   if(darkOrLightTheme == 'light') {
     // light theme color
     colorText = changeBrightness(colorTheme, -70)
@@ -169,7 +176,7 @@ function brightTheme(theme, colorTheme) {
 
       // inactive tabs
       "frame": colorInactiveTabs,
-      "tab_background_text": colorInactiveTabsText,         
+      "tab_background_text": colorTextInactiveTabs,         
       "tab_background_separator": colorInactiveTabsSeparators, 
 
       // popups

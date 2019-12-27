@@ -25,7 +25,8 @@ If you like the add-on, show some love by leaving a [review](https://addons.mozi
 ![Github screenshot](design/screenshots/screenshot-github-github-1000x599.jpg)
 
 # Todo
-- The color updates a lot (see facebook):https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/get or https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onUpdated
+- Update the screenshots: Netflex, Twitter, Github
+- Sometimes the frame flashes to white before updating to color
 - Add an onboard, upboard & offboard page: https://extensionworkshop.com/documentation/develop/onboard-upboard-offboard-users/
 - Port to Firefox Mobile: https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/
 
