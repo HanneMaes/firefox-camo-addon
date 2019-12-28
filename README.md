@@ -29,6 +29,8 @@ If you like the add-on, show some love by leaving a [review](https://addons.mozi
 # Todo
 - Sometimes the frame flashes to white before updating to color
 - Add an onboard, upboard & offboard page: https://extensionworkshop.com/documentation/develop/onboard-upboard-offboard-users/
+  - onboard: thanks for downloading camo dynamic. To see check on of these sites. If you come across a website hand you would likt to see it themed. Review or start github project. Link or icon to github + made by hanne
+  - offboard: google form. Why did you leave?
 - Port to Firefox Mobile: https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/
 
 # Info
