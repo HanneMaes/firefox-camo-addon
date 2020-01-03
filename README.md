@@ -33,6 +33,9 @@ If you like the add-on, show some love by leaving a [review](https://addons.mozi
   - offboard: google form. Why did you leave?
 - Port to Firefox Mobile: https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/
 
+# Build with
+- Chroma.js a javaScript library for all kinds of color manipulations: https://github.com/gka/chroma.js
+
 # Info
 - Theme colors: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/theme
 

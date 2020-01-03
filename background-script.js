@@ -1,7 +1,7 @@
 // website theme colors I defined myself for when there is no meta[name="theme-color"] tag found
 var userDefinedThemeColors = [
   [".smartschool.","#c60450"],
-  [".ap.","#B20005"],
+  [".ap.","#FFFFFF"],
   ["stackoverflow.","#F48024"],
   [".messenger.","#0074FF"],
   [".whatsapp.","#1EBEA5"],
@@ -26,14 +26,16 @@ var userDefinedThemeColors = [
   [".snapchat.", "#FFFC00"],
 ]
 
+var lastTabId = false
+
 // watch when a window is closed to reset the theme
 // this is to prevent when opening the browser it has the colors on the last opened website
 browser.windows.onRemoved.addListener(browser.theme.reset) // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/onRemoved
 
 // watch for changes & update the theme
-browser.windows.onFocusChanged.addListener(event => update(event.tabId))                // fires when the active window changes
-browser.tabs.onActivated.addListener(event => update(event.tabId))                      // fires when the active tab in a window changes
-browser.tabs.onUpdated.addListener(tabId => update(tabId), {properties: ["discarded"]}) // fires when a tab is updates
+browser.windows.onFocusChanged.addListener(event => update(event.tabId))             // fires when the active window changes
+browser.tabs.onActivated.addListener(event => update(event.tabId))                   // fires when the active tab in a window changes
+browser.tabs.onUpdated.addListener(tabId => update(tabId), {properties: ["status"]}) // fires when a tab is updates
 async function update(tabId) {
 
   console.log('')
@@ -43,7 +45,8 @@ async function update(tabId) {
   // This event will also be fired for changes to a tab's properties that don't involve navigation, like pinning and unpinning (which updates the pinned property) and muting or unmuting (which updates the audible and mutedInfo properties).
   
   // The second parameter is the filter. This function is only fired when the filer is true
-  //https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onUpdated
+  // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onUpdated
+  // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/Tab
   
   // get the meta theme color
   browser.tabs.executeScript(null, { 
@@ -110,10 +113,7 @@ async function update(tabId) {
       }
     } // function(result)
   ) // execute script
-    
-  // there was no theme color found
-
-} // async function
+} // async function update
 
 //****************************************************************************************************************************************************
 
@@ -154,6 +154,13 @@ function brightTheme(theme, colorTheme) {
     colorHover = changeBrightness(colorTheme, 10)
     colorAttention = "white"
   }
+
+  // print all colors
+  console.log('colorTheme:', colorTheme)
+  console.log('colorInactiveTabs:', colorInactiveTabs)
+  console.log('colorTextInactiveTabs:', colorTextInactiveTabs)
+  console.log('colorText:', colorText)
+  console.log('colorHover:', colorHover)
 
   // create a custom theme
   theme = {
@@ -245,6 +252,11 @@ function lightOrDark(color) {
 
 function changeBrightness(color, percent) {
   var num = parseInt(color.replace("#",""),16),
+
+  // this does not work well when the hex only contains 3 letters (like #fff)
+  // so we fix this here
+  // value = value.replaceAll("#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])", "#$1$1$2$2$3$3");
+
   amt = Math.round(2.55 * percent),
   R = (num >> 16) + amt,
   B = (num >> 8 & 0x00FF) + amt,
