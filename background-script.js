@@ -1,10 +1,9 @@
 // website theme colors I defined myself for when there is no meta[name="theme-color"] tag found
 var userDefinedThemeColors = [
-  [".smartschool.","#c60450"],
   [".ap.","#FFFFFF"],
   ["stackoverflow.","#F48024"],
   [".messenger.","#0074FF"],
-  [".whatsapp.","#1EBEA5"],
+  [".whatsapp.","#009688"],
   [".facebook.","#4B66A0"],
   ["mail.google","#DC3F34"],
   ["calendar.google","#3765D0"],
@@ -30,16 +29,22 @@ var lastTabId = false
 
 // watch when a window is closed to reset the theme
 // this is to prevent when opening the browser it has the colors on the last opened website
-browser.windows.onRemoved.addListener(browser.theme.reset) // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/onRemoved
+// browser.windows.onRemoved.addListener(browser.theme.reset) // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/onRemoved
 
 // watch for changes & update the theme
-browser.windows.onFocusChanged.addListener(event => update(event.tabId))             // fires when the active window changes
-browser.tabs.onActivated.addListener(event => update(event.tabId))                   // fires when the active tab in a window changes
-browser.tabs.onUpdated.addListener(tabId => update(tabId), {properties: ["status"]}) // fires when a tab is updates
+// browser.windows.onFocusChanged.addListener(event => update(event.tabId))             // fires when the active window changes
+// browser.tabs.onActivated.addListener(event => update(event.tabId))                   // fires when the active tab in a window changes
+// browser.tabs.onUpdated.addListener(tabId => update(tabId), {properties: ["status"]}) // fires when a tab is updates
 async function update(tabId) {
 
   console.log('')
 
+  // FIX FLASHING: look at 
+  // https://github.com/taboca/browser-adaptation-dynamic-theme
+  // https://github.com/JosephSamela/colorize-tabs
+  // https://github.com/HughIsaacs2/Fox-theme-color-tabs
+  // https://github.com/dguo/color-tailor
+  
   // A tab is updaten when the user navigates to a new URL in a tab, this will typically generate several onUpdated events as various properties of the tabs. Tab object are updated. 
   // This includes the url, but also potentially the title and favIconUrl properties. The status property will cycle through "loading" and "complete".
   // This event will also be fired for changes to a tab's properties that don't involve navigation, like pinning and unpinning (which updates the pinned property) and muting or unmuting (which updates the audible and mutedInfo properties).

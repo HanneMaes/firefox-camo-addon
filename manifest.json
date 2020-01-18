@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Camo dynamic theme",
-  "version": "2.6",
+  "version": "2.7",
   "description": "Colorize your browser based on the website.",
   "permissions": [
     "<all_urls>",
