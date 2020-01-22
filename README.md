@@ -8,8 +8,8 @@ Get the add-on: https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/
 
 **If a website you use a lot doesn't have a theme color, let me know at [GitHub](https://github.com/HanneMaes/firefox-camo-addon) or maes.hanne@gmail.com and I'll update the add-on for you.**
 
-The color is based on the websites ```meta[name="theme-color"]``` tag.<br>
-Because not every website has a ```meta[name="theme-color"]``` tag, I defined the color myself for a lot of website. 
+The color is based on the websites `meta[name="theme-color"]` tag.<br>
+Because not every website has a `meta[name="theme-color"]` tag, I defined the color myself for a lot of website. 
 
 If you like the add-on, show some love by leaving a [review](https://addons.mozilla.org/nl/firefox/addon/coma-dynamic-theme/) or star the project on [GitHub](https://github.com/HanneMaes/firefox-camo-addon).
 
@@ -34,8 +34,10 @@ If you like the add-on, show some love by leaving a [review](https://addons.mozi
   - offboard: google form. Why did you leave?
 - Port to Firefox Mobile: https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/
 
+<!--
 # Build with
 - Chroma.js a javaScript library for all kinds of color manipulations: https://github.com/gka/chroma.js
+-->
 
 # Info
 - Theme colors: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/theme
