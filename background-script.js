@@ -32,8 +32,8 @@ var lastTabId = false
 // browser.windows.onRemoved.addListener(browser.theme.reset) // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/onRemoved
 
 // watch for changes & update the theme
-// browser.windows.onFocusChanged.addListener(event => update(event.tabId))             // fires when the active window changes
-// browser.tabs.onActivated.addListener(event => update(event.tabId))                   // fires when the active tab in a window changes
+browser.windows.onFocusChanged.addListener(event => update(event.tabId))             // fires when the active window changes
+browser.tabs.onActivated.addListener(event => update(event.tabId))                   // fires when the active tab in a window changes
 // browser.tabs.onUpdated.addListener(tabId => update(tabId), {properties: ["status"]}) // fires when a tab is updates
 async function update(tabId) {
 

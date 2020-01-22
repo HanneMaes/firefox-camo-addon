@@ -47,4 +47,6 @@ If you like the add-on, show some love by leaving a [review](https://addons.mozi
 3. Select: background-script.js
 
 # Packaging
-- ```web-ext build```: https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/
+- Build: `web-ext build`
+  - Installation: `npm install --global web-ext`
+  - Docs: https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/
