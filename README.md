@@ -27,11 +27,10 @@ If you like the add-on, show some love by leaving a [review](https://addons.mozi
 ![Github screenshot](design/screenshots/screenshot-github-github-1000x599.jpg)
 
 # Todo
+- When a website doesn't have a theme-color meta tag, pick the background-color of the <header> tag to create a seamless experience.
 - Sometimes the frame flashes to white before updating to color
 - When you open FireFox it has the theme color of the website you last visited
 - Add an onboard, upboard & offboard page: https://extensionworkshop.com/documentation/develop/onboard-upboard-offboard-users/
-  - onboard: thanks for downloading camo dynamic. To see check on of these sites. If you come across a website hand you would likt to see it themed. Review or start github project. Link or icon to github + made by hanne
-  - offboard: google form. Why did you leave?
 - Port to Firefox Mobile: https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/
 
 <!--
