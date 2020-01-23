@@ -27,7 +27,7 @@ If you like the add-on, show some love by leaving a [review](https://addons.mozi
 ![Github screenshot](design/screenshots/screenshot-github-github-1000x599.jpg)
 
 # Todo
-- When a website doesn't have a theme-color meta tag, pick the background-color of the <header> tag to create a seamless experience.
+- When a website doesn't have a theme-color meta tag, pick the background-color of the <header> tag and if that does not exist the color of the <nav> tag to create a seamless experience.
 - Sometimes the frame flashes to white before updating to color
 - When you open FireFox it has the theme color of the website you last visited
 - Add an onboard, upboard & offboard page: https://extensionworkshop.com/documentation/develop/onboard-upboard-offboard-users/
