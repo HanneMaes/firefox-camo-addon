@@ -31,8 +31,10 @@ var userDefinedThemeColors = [
 var lastTabId = false
 
 // watch when a window is closed to reset the theme
-// this is to prevent when opening the browser it has the colors on the last opened website
-// browser.windows.onRemoved.addListener(browser.theme.reset) // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/onRemoved
+browser.runtime.onStartup.addListener(handleStartup);
+function handleStartup() {
+  browser.theme.reset()
+}
 
 // watch for changes & update the theme
 browser.windows.onFocusChanged.addListener(event => update(event.tabId))             // fires when the active window changes
