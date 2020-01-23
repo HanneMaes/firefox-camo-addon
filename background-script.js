@@ -1,3 +1,6 @@
+// onboard: thanks for downloading camo dynamic. To see check on of these sites. If you come across a website hand you would likt to see it themed. Review or start github project. Link or icon to github + made by hanne
+// offboard: google form. Why did you leave?
+
 // website theme colors I defined myself for when there is no meta[name="theme-color"] tag found
 var userDefinedThemeColors = [
   [".ap.","#FFFFFF"],
