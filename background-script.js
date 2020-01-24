@@ -26,6 +26,7 @@ var userDefinedThemeColors = [
   [".tumblr.", "#001935"],
   [".pinterest.", "#FFFFFF"],
   [".snapchat.", "#FFFC00"],
+  ["code.org", "#00ADBC"],
 ]
 
 var lastTabId = false
